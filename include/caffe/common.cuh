@@ -1,10 +1,13 @@
 // Copyright 2014 George Papandreou
-#pragma once
+
 #ifndef CAFFE_COMMON_CUH_
 #define CAFFE_COMMON_CUH_
-
+#ifndef CUDA_H
+#define CUDA_H
 #include <cuda.h>
-
+#endif
+#ifndef ATOMICADD_D
+#define ATOMICADD_D
  CUDA: atomicAdd is not defined for doubles
 static __inline__ __device__ double atomicAdd(double *address, double val) {
   unsigned long long int* address_as_ull = (unsigned long long int*)address;
@@ -17,5 +20,5 @@ static __inline__ __device__ double atomicAdd(double *address, double val) {
   } while (assumed != old);
   return __longlong_as_double(old);
 }
-
+#endif
 #endif
