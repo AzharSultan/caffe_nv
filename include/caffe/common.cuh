@@ -6,8 +6,8 @@
 #define CUDA_H
 #include <cuda.h>
 #endif
-#ifndef ATOMICADD_D
-#define ATOMICADD_D
+#if !defined(__CUDA_ARCH__) || __CUDA_ARCH__ >= 600
+#else
 // CUDA: atomicAdd is not defined for doubles
 static __inline__ __device__ double atomicAdd(double *address, double val) {
   unsigned long long int* address_as_ull = (unsigned long long int*)address;
