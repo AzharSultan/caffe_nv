@@ -90,7 +90,7 @@ cv::Mat ReadImageToCVMat(const string& filename,
 
 cv::Mat ReadImageToCVMat(const string& filename,
     const int height, const int width) {
-  return ReadImageToCVMat(filename, height, width, true);
+  return ReadImageToCVMat(filename, height, width, True);
 }
 
 cv::Mat ReadImageToCVMat(const string& filename,
