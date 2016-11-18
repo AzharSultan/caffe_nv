@@ -88,19 +88,19 @@ cv::Mat ReadImageToCVMat(const string& filename,
   return cv_img;
 }
 
-cv::Mat ReadImageToCVMat(const string& filename,
-    const int height, const int width) {
-  return ReadImageToCVMat(filename, height, width, static_cast<bool>(1));
-}
-
-cv::Mat ReadImageToCVMat(const string& filename,
-    const bool is_color) {
-  return ReadImageToCVMat(filename, static_cast<int>(0), static_cast<int>(0), is_color);
-}
-
-cv::Mat ReadImageToCVMat(const string& filename) {
-  return ReadImageToCVMat(filename, static_cast<int>(0), static_cast<int>(0), true);
-}
+//cv::Mat ReadImageToCVMat(const string& filename,
+//    const int height, const int width) {
+//  return ReadImageToCVMat(filename, height, width, static_cast<bool>(1));
+//}
+//
+//cv::Mat ReadImageToCVMat(const string& filename,
+//    const bool is_color) {
+//  return ReadImageToCVMat(filename, static_cast<int>(0), static_cast<int>(0), is_color);
+//}
+//
+//cv::Mat ReadImageToCVMat(const string& filename) {
+//  return ReadImageToCVMat(filename, static_cast<int>(0), static_cast<int>(0), true);
+//}
 
 // Do the file extension and encoding match?
 static bool matchExt(const std::string & fn,
