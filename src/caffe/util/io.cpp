@@ -90,16 +90,16 @@ cv::Mat ReadImageToCVMat(const string& filename,
 
 cv::Mat ReadImageToCVMat(const string& filename,
     const int height, const int width) {
-  return ReadImageToCVMat(filename, height, width, True);
+  return ReadImageToCVMat(filename, height, width, static_cast<bool>(1));
 }
 
 cv::Mat ReadImageToCVMat(const string& filename,
     const bool is_color) {
-  return ReadImageToCVMat(filename, 0, 0, is_color);
+  return ReadImageToCVMat(filename, static_cast<int>(0), static_cast<int>(0), is_color);
 }
 
 cv::Mat ReadImageToCVMat(const string& filename) {
-  return ReadImageToCVMat(filename, 0, 0, true);
+  return ReadImageToCVMat(filename, static_cast<int>(0), static_cast<int>(0), true);
 }
 
 // Do the file extension and encoding match?
