@@ -58,7 +58,7 @@ void ImageDimPrefetchingDataLayer<Dtype>::Forward_gpu(
   // Ensure the copy is synchronous wrt the host, so that the next batch isn't
   // copied in meanwhile.
   CUDA_CHECK(cudaStreamSynchronize(cudaStreamDefault));
-  prefetch_free_.push(batch);
+  BasePrefetchingDataLayer<Dtype>::prefetch_free_.push(batch);
 }
 
 INSTANTIATE_LAYER_GPU_FORWARD(BasePrefetchingDataLayer);
