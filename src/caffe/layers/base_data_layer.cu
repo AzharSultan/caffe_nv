@@ -29,6 +29,7 @@ void BasePrefetchingDataLayer<Dtype>::Forward_gpu(
     caffe_copy(batch->data_.count(), batch->data_.gpu_data(),
                top[0]->mutable_gpu_data());
   }
+}
 
 template <typename Dtype>
 void ImageDimPrefetchingDataLayer<Dtype>::Forward_gpu(
