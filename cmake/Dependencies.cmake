@@ -15,6 +15,11 @@ include("cmake/External/glog.cmake")
 include_directories(SYSTEM ${GLOG_INCLUDE_DIRS})
 list(APPEND Caffe_LINKER_LIBS ${GLOG_LIBRARIES})
 
+# ---[ Google-glog
+include("cmake/Modules/FindMATIO.cmake")
+include_directories(SYSTEM ${MATIO_INCLUDE_DIRS})
+list(APPEND Caffe_LINKER_LIBS ${MATIO_LIBRARIES})
+
 # ---[ Google-gflags
 include("cmake/External/gflags.cmake")
 include_directories(SYSTEM ${GFLAGS_INCLUDE_DIRS})
