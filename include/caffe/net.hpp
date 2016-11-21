@@ -38,7 +38,13 @@ class Net {
    * @brief Run Forward and return the result.
    *
    */
-  const vector<Blob<Dtype>*>& ForwardPrefilled(Dtype* loss = NULL);
+  const vector<Blob<Dtype>*>& Forward(Dtype* loss = NULL);
+  /// @brief DEPRECATED; use Forward() instead.
+  const vector<Blob<Dtype>*>& ForwardPrefilled(Dtype* loss = NULL) {
+    LOG_EVERY_N(WARNING, 1000) << "DEPRECATED: ForwardPrefilled() "
+        << "will be removed in a future version. Use Forward().";
+    return Forward(loss);
+  }
 
   /**
    * The From and To variants of Forward and Backward operate on the
@@ -84,9 +90,9 @@ class Net {
    */
   void Reshape();
 
-  Dtype ForwardBackward(const vector<Blob<Dtype>* > & bottom) {
+  Dtype ForwardBackward() {
     Dtype loss;
-    Forward(bottom, &loss);
+    Forward(&loss);
     Backward();
     return loss;
   }

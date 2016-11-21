@@ -85,7 +85,6 @@ class Solver {
     virtual void on_start() = 0;
     virtual void allreduce() = 0;
     virtual void soft_barrier() = 0;
-    virtual void on_gradients_ready() = 0;
 
     template <typename T>
     friend class Solver;
