@@ -8,10 +8,10 @@
 namespace caffe {
 
 // Return true iff the net is not the current version.
-// bool NetNeedsUpgrade(const NetParameter& net_param);
+ bool NetNeedsUpgrade(const NetParameter& net_param);
 
 // Check for deprecations and upgrade the NetParameter as needed.
-// bool UpgradeNetAsNeeded(const string& param_file, NetParameter* param);
+ bool UpgradeNetAsNeeded(const string& param_file, NetParameter* param);
 
 // Read parameters from a file into a NetParameter proto message.
 void ReadNetParamsFromTextFileOrDie(const string& param_file,
@@ -60,10 +60,10 @@ bool UpgradeV1LayerParameter(const V1LayerParameter& v1_layer_param,
 const char* UpgradeV1LayerType(const V1LayerParameter_LayerType type);
 
 // Return true iff the Net contains input fields.
-bool NetNeedsInputUpgrade(const NetParameter& net_param);
+//bool NetNeedsInputUpgrade(const NetParameter& net_param);
 
 // Perform all necessary transformations to upgrade input fields into layers.
-void UpgradeNetInput(NetParameter* net_param);
+//void UpgradeNetInput(NetParameter* net_param);
 
 // Return true iff the solver contains any old solver_type specified as enums
 bool SolverNeedsTypeUpgrade(const SolverParameter& solver_param);
