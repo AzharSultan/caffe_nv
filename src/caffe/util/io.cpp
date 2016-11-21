@@ -71,7 +71,8 @@ void WriteProtoToBinaryFile(const Message& proto, const char* filename) {
 
 #ifdef USE_OPENCV
 cv::Mat ReadImageToCVMat(const string& filename,
-    const int height, const int width, const bool is_color) {
+			 const int height, const int width, const bool is_color,
+			 int* img_height, int* img_width) {
   cv::Mat cv_img;
   int cv_read_flag = (is_color ? CV_LOAD_IMAGE_COLOR :
     CV_LOAD_IMAGE_GRAYSCALE);
@@ -85,22 +86,29 @@ cv::Mat ReadImageToCVMat(const string& filename,
   } else {
     cv_img = cv_img_origin;
   }
+  if (img_height != NULL) {
+    *img_height = cv_img.rows;
+  }
+  if (img_width != NULL) {
+    *img_width = cv_img.cols;
+  }
+
   return cv_img;
 }
 
-//cv::Mat ReadImageToCVMat(const string& filename,
-//    const int height, const int width) {
-//  return ReadImageToCVMat(filename, height, width, static_cast<bool>(1));
-//}
-//
-//cv::Mat ReadImageToCVMat(const string& filename,
-//    const bool is_color) {
-//  return ReadImageToCVMat(filename, static_cast<int>(0), static_cast<int>(0), is_color);
-//}
-//
-//cv::Mat ReadImageToCVMat(const string& filename) {
-//  return ReadImageToCVMat(filename, static_cast<int>(0), static_cast<int>(0), true);
-//}
+cv::Mat ReadImageToCVMat(const string& filename,
+    const int height, const int width) {
+  return ReadImageToCVMat(filename, height, width, true);
+}
+
+cv::Mat ReadImageToCVMat(const string& filename,
+    const bool is_color) {
+  return ReadImageToCVMat(filename, 0, 0, is_color);
+}
+
+cv::Mat ReadImageToCVMat(const string& filename) {
+  return ReadImageToCVMat(filename, 0, 0, true);
+}
 
 // Do the file extension and encoding match?
 static bool matchExt(const std::string & fn,

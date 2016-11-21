@@ -19,6 +19,12 @@ void InsertSplits(const NetParameter& param, NetParameter* param_split) {
   map<pair<int, int>, float> top_idx_to_loss_weight;
   map<pair<int, int>, int> top_idx_to_bottom_split_idx;
   map<int, string> layer_idx_to_layer_name;
+  layer_idx_to_layer_name[-1] = "input";
+  // Determine the number of times each blob is used as an input (bottom) blob.
+  for (int i = 0; i < param.input_size(); ++i) {
+    const string& blob_name = param.input(i);
+    blob_name_to_last_top_idx[blob_name] = make_pair(-1, i);
+  }
   for (int i = 0; i < param.layer_size(); ++i) {
     const LayerParameter& layer_param = param.layer(i);
     layer_idx_to_layer_name[i] = layer_param.name();
