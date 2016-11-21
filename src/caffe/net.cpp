@@ -59,7 +59,22 @@ void Net<Dtype>::Init(const NetParameter& in_param) {
   name_ = param.name();
   map<string, int> blob_name_to_idx;
   set<string> available_blobs;
+  CHECK(param.input_dim_size() == 0 || param.input_shape_size() == 0)
+      << "Must specify either input_shape OR deprecated input_dim, not both.";
+  if (param.input_dim_size() > 0) {
+    // Deprecated 4D dimensions.
+    CHECK_EQ(param.input_size() * 4, param.input_dim_size())
+        << "Incorrect input blob dimension specifications.";
+  } else {
+    CHECK_EQ(param.input_size(), param.input_shape_size())
+        << "Exactly one input_shape must be specified per input.";
+  }
   memory_used_ = 0;
+  // set the input blobs
+  for (int input_id = 0; input_id < param.input_size(); ++input_id) {
+    const int layer_id = -1;  // inputs have fake layer ID -1
+    AppendTop(param, layer_id, input_id, &available_blobs, &blob_name_to_idx);
+  }
   // For each layer, set up its input and output
   bottom_vecs_.resize(param.layer_size());
   top_vecs_.resize(param.layer_size());
