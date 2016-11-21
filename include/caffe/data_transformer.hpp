@@ -35,7 +35,7 @@ class DataTransformer {
    * @return
    *    A uniformly random integer value from ({0, 1, ..., n-1}).
    */
-  virtual int Rand(int n);
+  //virtual int Rand(int n);
 
 #ifndef CPU_ONLY
   void TransformGPU(int N, int C, int H, int W,
