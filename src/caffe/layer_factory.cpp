@@ -7,6 +7,7 @@
 
 #include "caffe/layer.hpp"
 #include "caffe/layer_factory.hpp"
+#include "caffe/layers/batch_norm_layer.hpp"
 #include "caffe/layers/conv_layer.hpp"
 #include "caffe/layers/lrn_layer.hpp"
 #include "caffe/layers/pooling_layer.hpp"
@@ -17,7 +18,7 @@
 #include "caffe/proto/caffe.pb.h"
 
 #ifdef USE_CUDNN
-#include "caffe/layers/cudnn_batch_norm_layer.hpp"
+//#include "caffe/layers/cudnn_batch_norm_layer.hpp"
 #include "caffe/layers/cudnn_conv_layer.hpp"
 #include "caffe/layers/cudnn_lcn_layer.hpp"
 #include "caffe/layers/cudnn_lrn_layer.hpp"
