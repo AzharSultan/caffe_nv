@@ -396,8 +396,8 @@ message LayerParameter {
   optional ImageDataParameter image_data_param = 115;
   optional InfogainLossParameter infogain_loss_param = 116;
   optional InnerProductParameter inner_product_param = 117;
-  optional InterpParameter interp_param = 143;
-  optional InputParameter input_param = 153;
+  optional InterpParameter interp_param = 153;
+  optional InputParameter input_param = 143;
   optional LogParameter log_param = 134;
   optional LRNParameter lrn_param = 118;
   optional MatReadParameter mat_read_param = 151;
@@ -450,13 +450,13 @@ message TransformationParameter {
   // Force the decoded image to have 1 color channels.
   optional bool force_gray = 7 [default = false];
   // If we want to do data augmentation, Scaling factor for randomly scaling input images
-  repeated float scale_factors = 8;
+  repeated float scale_factors = 11;
   // the width for cropped region
   optional uint32 crop_width = 9 [default = 0];
   // the height for cropped region
   optional uint32 crop_height = 10 [default = 0];
   // Run the transform (synchronously) on the GPU
-  optional bool use_gpu_transform = 11 [default = false];
+  optional bool use_gpu_transform = 8 [default = false];
 }
 // Message that stores parameters used to create gridbox ground truth
 message DetectNetGroundTruthParameter {
@@ -1193,7 +1193,7 @@ message ReshapeParameter {
   //   reshape_param { shape { dim:  2  dim: 2  dim:  4 } }
   //   reshape_param { shape { dim:  0  dim: 2  dim:  4 } }
   //   reshape_param { shape { dim:  0  dim: 2  dim: -1 } }
-  //   reshape_param { shape { dim: -1  dim: 0  dim:  2 } }
+  //   reshape_param { shape { dim:  0  dim:-1  dim:  4 } }
   //
   optional BlobShape shape = 1;
 
