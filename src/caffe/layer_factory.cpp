@@ -82,16 +82,16 @@ shared_ptr<Layer<Dtype> > GetBatchNormLayer(const LayerParameter& param) {
   BatchNormParameter_Engine engine = param.batch_norm_param().engine();
   if (engine == BatchNormParameter_Engine_DEFAULT) {
     engine = BatchNormParameter_Engine_CAFFE;
-#ifdef USE_CUDNN
-    engine = BatchNormParameter_Engine_CUDNN;
-#endif
+//#ifdef USE_CUDNN
+//    engine = BatchNormParameter_Engine_CUDNN;
+//#endif
   }
   if (engine == BatchNormParameter_Engine_CAFFE) {
     return shared_ptr<Layer<Dtype> >(new BatchNormLayer<Dtype>(param));
-#ifdef USE_CUDNN
-  } else if (engine == BatchNormParameter_Engine_CUDNN) {
-    return shared_ptr<Layer<Dtype> >(new CuDNNBatchNormLayer<Dtype>(param));
-#endif
+//#ifdef USE_CUDNN
+//  } else if (engine == BatchNormParameter_Engine_CUDNN) {
+//    return shared_ptr<Layer<Dtype> >(new CuDNNBatchNormLayer<Dtype>(param));
+//#endif
   } else {
     LOG(FATAL) << "Layer " << param.name() << " has unknown engine.";
   }
